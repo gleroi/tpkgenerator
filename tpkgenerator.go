@@ -33,9 +33,9 @@ func main() {
 	start(tasks, initInput, &wg)
 	wg.Wait()
 
-	fmt.Printf("STATUS: ")
+	fmt.Printf("=== STATUS ===\n")
 	for _, task := range tasks {
-		fmt.Printf("%s: dir=%t, tpk=%t, dld:%t\n", task.drName, task.dirCreated, task.tpkGenerated, task.tpkDownloaded)
+		fmt.Printf("%s: \tdir=%t, tpk=%t, dld:%t\n", task.drName, task.dirCreated, task.tpkGenerated, task.tpkDownloaded)
 	}
 }
 
@@ -140,7 +140,7 @@ func generateTpk(name string, generator *rand.Rand) bool {
 	time.Sleep(1 * time.Second)
 
 	val := generator.Intn(100)
-	done := val > 80
+	done := val > 10
 	fmt.Printf("generateTpk: %s: done: %t (%d)\n", name, done, val)
 	return done
 }
@@ -148,11 +148,11 @@ func generateTpk(name string, generator *rand.Rand) bool {
 func downloadTpk(name string, generator *rand.Rand) bool {
 	fmt.Printf("downloadTpk: %s\n", name)
 
-	time.Sleep(5 * time.Second)
+	time.Sleep(1 * time.Second)
 
 	fmt.Printf("downloadTpk: %s: done\n", name)
 	val := generator.Intn(100)
-	done := val > 80
+	done := val > 10
 	fmt.Printf("downloadTpk: %s: done: %t (%d)\n", name, done, val)
 	return done
 }
